@@ -9,7 +9,7 @@ public class SiebelRepositoryDefDecoder {
 	int currentIndex = 5;
 	
 	protected void processCompiledString(String rrString) {
-		repositoryDefinition = recProcessCompiledString(rrString);
+		repositoryDefinition = recProcessCompiledString(rrString.trim());
 	}
 	
 // Just an example a compiled Siebel repository definition followed when writing comments of the parser code
@@ -86,7 +86,7 @@ public class SiebelRepositoryDefDecoder {
 		
 		//workaround for extra spaces and tabs in scripts
 		//if next is not 1* something is off, do not set attributes and skip to 1*	
-		if(!"1*".equals(rrString.substring(endIndex, endIndex+2))) {
+		if((rrString.length() - endIndex) > 2 &&  !"1*".equals(rrString.substring(endIndex, endIndex+2))) {
 			endIndex = rrString.indexOf("1*", endIndex);
 		}
 		else {
