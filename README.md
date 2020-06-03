@@ -52,9 +52,14 @@ to use the data from RR tables for TIAA
 Build IO and IC on top of existing BO/BC (Runtime Repository Details / Runtime Repository Buscomp and Runtime Repository Pick List) and then define DOs similar to SiebelBc and SiebelPicklist, but you only need to map 3 fields in each: Name, Repository and Complield Obj Def
 
 2. Use BusCompRepositoryDefDecoder and PickListRepositoryDefDecoder to decode compiled definition into existing DO format like this:
-		SiebelBc bcDef = BusCompRepositoryDefDecoder.getBcDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
-		SiebelPicklist plDef = PickListRepositoryDefDecoder.getPickListDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
-Where rrCompiledDef is mapped to "Complield Obj Def" 		
+
+SiebelBc bcDef = 
+	BusCompRepositoryDefDecoder.getBcDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
+	
+SiebelPicklist plDef =
+	PickListRepositoryDefDecoder.getPickListDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
+	
+Where rrCompiledDef is mapped to "Complield Obj Def"; 		
 See RepositoryReaderRunner for an example.
 
 ## Explanation of Siebel encoding used in OMPILED_OBJ_DEFN CLOB fields
