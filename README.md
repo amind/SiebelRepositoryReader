@@ -62,12 +62,14 @@ SiebelPicklist plDef =
 Where rrCompiledDef is mapped to "Complield Obj Def"; 		
 See RepositoryReaderRunner for an example.
 
-## Explanation of Siebel encoding used in OMPILED_OBJ_DEFN CLOB fields
+## Explanation of Siebel encoding used in COMPILED_OBJ_DEFN CLOB fields
 
 The way this serialization is done is, *N (number) followed by a N long sequence of characters to read, except certain digits mean something else as well.
 
 0* - empty value
+
 1* - start of a property set (it is not a true representation of the siebel property set, but similar)
+
 3* - value tag
 
 SQL> SELECT COMPILED_OBJ_DEFN from SIEBEL.S_RR_BUSCOMP WHERE SIEBEL.S_RR_BUSCOMP.NAME = 'Runtime Repository Buscomp';
