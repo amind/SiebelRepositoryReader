@@ -8,7 +8,7 @@ import org.tiaa.customerassignment.rs.crm.domain.SiebelBcField;
 public class RepositoryReaderRunner {
 
 	public static void main(String[] args) throws IOException {
-		String rrCompiledDef = readRRFile("/Users/gkibilov/dev/git/SiebelRepositoryReader/RR_Files/BusComp/Activity TCSD.txt");
+		String rrCompiledDef = readRRFile("./RR_Files/BusComp/Activity TCSD.txt");
 		SiebelBc bcDef = BusCompRepositoryDefDecoder.getBcDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
 		
 		for (SiebelBcField field : bcDef.getFields()) {
