@@ -47,11 +47,11 @@ to use the data from RR tables for TIAA
 ### C. Add BusCompRepositoryDefDecoder, PickListRepositoryDefDecoder and SiebelRepositoryDefDecoder to your project
 
 ### D. Modify your repository definition loading code to:
-1. Load compiled repository definition data from S_RR_BUSCOMP.COMPILED_OBJ_DEFN and S_RR_PICKLIST.COMPILED_OBJ_DEFN instead of no longer existing tables in prod
-Build IO and IC on top of existing BO/BC (Runtime Repository Details / Runtime Repository Buscomp and Runtime Repository Pick List) and then define DOs similar to SiebelBc and SiebelPicklist, 
-but you only need to map 3 fields in each: Name, Repository  and Complield Obj Def
+1. Load compiled repository definition data from S_RR_BUSCOMP.COMPILED_OBJ_DEFN and S_RR_PICKLIST.COMPILED_OBJ_DEFN instead of no longer existing tables in prod.
 
-2. Use BusCompRepositoryDefDecoder and PickListRepositoryDefDecoder to decode compiled definition into previous DO format like this:
+Build IO and IC on top of existing BO/BC (Runtime Repository Details / Runtime Repository Buscomp and Runtime Repository Pick List) and then define DOs similar to SiebelBc and SiebelPicklist, but you only need to map 3 fields in each: Name, Repository and Complield Obj Def
+
+2. Use BusCompRepositoryDefDecoder and PickListRepositoryDefDecoder to decode compiled definition into existing DO format like this:
 		SiebelBc bcDef = BusCompRepositoryDefDecoder.getBcDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
 		SiebelPicklist plDef = PickListRepositoryDefDecoder.getPickListDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
 Where rrCompiledDef is mapped to "Complield Obj Def" 		
