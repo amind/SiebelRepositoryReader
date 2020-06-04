@@ -85,7 +85,7 @@ public class SiebelRepositoryDefDecoder {
 		value = rrString.substring(currentIndex, endIndex);		
 		
 		//workaround for extra spaces and tabs in scripts
-		//if next is not 1* something is off, do not set attributes and skip to 1*	
+		//if next is not 1* something is off, do not set attributes and skip to next 1*, unless it is the end
 		if((rrString.length() - endIndex) > 2 &&  !"1*".equals(rrString.substring(endIndex, endIndex+2))) {
 			endIndex = rrString.indexOf("1*", endIndex);
 		}

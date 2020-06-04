@@ -7,7 +7,7 @@ import org.tiaa.customerassignment.rs.crm.domain.SiebelBcUserProperty;
 
 public class BusCompRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 
-	public static SiebelBc getBcDefFromRepositoryClob(String bcName, String rrComplied) {
+	public static SiebelBc getDefinitionFromRepositoryClob(String bcName, String rrComplied) {
 		BusCompRepositoryDefDecoder decoder= new BusCompRepositoryDefDecoder(bcName, rrComplied);
 		decoder.init(rrComplied);
 		return decoder.bcDef;
@@ -60,8 +60,11 @@ public class BusCompRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 		//set properties
 		
 //		private String calculated;
+		field.setCalculated(repDef.getAttributes().get(0));
 //		private String calculatedValue;
+		field.setCalculatedValue(repDef.getAttributes().get(1));
 //		private String destField;
+		field.setDestField(repDef.getAttributes().get(5));
 //		private String inactive;
 		//there are no RR records for inactive meta data
 		field.setInactive("N");
@@ -76,9 +79,11 @@ public class BusCompRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 //		private String parentName;
 //		private String pickList;
 		field.setPickList(repDef.getAttributes().get(22));
-//		private String pickListBc;
-//		private String pickListField;
-//		private String pickListValue;
+		
+//		private String pickListBc; <-this can be set in isFeildLOV, it is not available in RR Compiled Def
+//		private String pickListField; <-this can be set in isFeildLOV, it is not available in RR Compiled Def
+//		private String pickListValue; <-this can be set in isFeildLOV, it is not available in RR Compiled Def
+		
 //		private String readOnly;
 		field.setReadOnly(repDef.getAttributes().get(26));
 //		private String repositoryId;
@@ -86,12 +91,15 @@ public class BusCompRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 //		private String required;
 		field.setRequired(repDef.getAttributes().get(27));
 //		private String scale;
+		field.setScale(repDef.getAttributes().get(28));
 //		private String type;
 		field.setType(repDef.getAttributes().get(30));
 //		private String length;
 		field.setLength(repDef.getAttributes().get(29));
 //		private String validation;
-//		private boolean lov = false;
+		field.setValidation(repDef.getAttributes().get(32));
+		
+//		private boolean lov = false; <-this is set in isFeildLOV		
 //		private String searchSpec;
 //		private String sortSpec;
 //		private String parentSpec;		

@@ -2,7 +2,7 @@ import org.tiaa.customerassignment.rs.crm.domain.SiebelPicklist;
 
 public class PickListRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 
-	public static SiebelPicklist getBcDefFromRepositoryClob(String pickListName, String rrComplied) {
+	public static SiebelPicklist getDefinitionFromRepositoryClob(String pickListName, String rrComplied) {
 		PickListRepositoryDefDecoder decoder= new PickListRepositoryDefDecoder(pickListName, rrComplied);
 		decoder.init(rrComplied);
 		return decoder.pickListDef;
@@ -11,7 +11,6 @@ public class PickListRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 	private PickListRepositoryDefDecoder(String pickListName, String rrComplied) {
 		super();
 		this.pickListName = pickListName;
-		init(rrComplied);
 	}
 	
 	private String pickListName;	
@@ -29,6 +28,7 @@ public class PickListRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 			pickListDef.setInactive("N");
 			
 			pickListDef.setName(repDef.getAttributes().get(3));
+			pickListDef.setBusComp(repDef.getAttributes().get(1));
 			pickListDef.setSearchSpec(repDef.getAttributes().get(8));
 			pickListDef.setSortSpec(repDef.getAttributes().get(9));
 			pickListDef.setStaticField(repDef.getAttributes().get(10));
@@ -40,6 +40,5 @@ public class PickListRepositoryDefDecoder extends SiebelRepositoryDefDecoder{
 		}
 	}
 	
-
 	
 }

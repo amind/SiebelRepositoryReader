@@ -54,13 +54,42 @@ Build IO and IC on top of existing BO/BC (Runtime Repository Details / Runtime R
 2. Use BusCompRepositoryDefDecoder and PickListRepositoryDefDecoder to decode compiled definition into existing DO format like this:
 
 SiebelBc bcDef = 
-	BusCompRepositoryDefDecoder.getBcDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
+	BusCompRepositoryDefDecoder.getDefinitionFromRepositoryClob("Activity TCSD", rrCompiledDef);
 	
 SiebelPicklist plDef =
-	PickListRepositoryDefDecoder.getPickListDefFromRepositoryClob("Activity TCSD", rrCompiledDef);
+	PickListRepositoryDefDecoder.getDefinitionFromRepositoryClob("PickList Employee Dest Business Unit TC5", rrCompiledDef);
 	
 Where rrCompiledDef is mapped to "Complield Obj Def"; 		
 See RepositoryReaderRunner for an example.
+
+### E. Make following code modifications to set 3 SiebelBcField fields:
+pickListBc,
+pickListField,
+pickListValue
+
+This is needed because these 3 SiebelBcField properties are not found in S_RR_BUSCOMP.COMPILED_OBJ_DEFN
+
+1. Add busComp attribute to SiebelPicklist, other 2 are already present
+	
+	private String busComp;
+
+	public String getBusComp() {
+		return busComp;
+	}	
+	
+	public void setBusComp(String busComp) {
+		this.busComp = busComp;
+	}	
+	
+2. Add code to the isFieldLov method in MetadataDAO to set the above 3 fields
+
+	SiebelPicklist plDef = 
+		PickListRepositoryDefDecoder.getDefinitionFromRepositoryClob(pickListName, rrCompiledDef);
+
+	field.setPickListBc(plDef.getBusComp());
+	field.setPickListField(plDef.getTypeField());
+	field.setPickListValue(plDef.getTypeValue());
+	
 
 ## Explanation of Siebel encoding used in COMPILED_OBJ_DEFN CLOB fields
 

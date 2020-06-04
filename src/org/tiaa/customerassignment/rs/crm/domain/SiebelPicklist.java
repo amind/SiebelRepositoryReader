@@ -14,7 +14,16 @@ public class SiebelPicklist extends BaseEntity
 	private String sortSpec;
 	private String staticField;
 	private String typeField;
-	private String typeValue;
+	private String typeValue;	
+	private String busComp;
+
+	public String getBusComp() {
+		return busComp;
+	}
+
+	public void setBusComp(String busComp) {
+		this.busComp = busComp;
+	}
 
 	public String getInactive()
 	{
